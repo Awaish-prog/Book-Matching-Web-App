@@ -1,10 +1,13 @@
 import { useState } from "react";
 import NavMenu from "../Components/NavMenu";
 import { sendUserData } from "../ApiCalls/ApiCalls";
+import { useLocation } from "react-router-dom";
+
 
 export default function UserInputForm(){
     const [genres, setGenres] = useState([])
     const [books, setBooks] = useState([])
+    const location = useLocation()
     function insertValueInGenres(genre){
         setGenres((prev) => {
             prev.includes(genre) ? prev.shift(genre) : prev.push(genre)
@@ -17,10 +20,9 @@ export default function UserInputForm(){
             return prev
         })
     }
-
     function sendData(e){
         e.preventDefault()
-        sendUserData(genres, books)
+        sendUserData(location.state.userName, genres, books)
     }
     return (
         <>

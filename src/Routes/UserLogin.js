@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { createUser } from "../ApiCalls/ApiCalls"
 
 
 export default function UserLogin(){
@@ -12,7 +13,7 @@ export default function UserLogin(){
     
     function submitLoginForm(e){
         e.preventDefault()
-        navigate("/userInput")
+        createUser(userName) ? navigate("/userInput", {state : {userName}}) : console.log("Error");
     }
     return (
         <section className="">
