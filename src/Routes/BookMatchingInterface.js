@@ -1,4 +1,5 @@
-import Chart, {ApexCharts} from "react-apexcharts";
+import Chart from "react-apexcharts";
+import NavMenu from "../Components/NavMenu";
 
 export default function BookMatchingInterface(){
 
@@ -8,19 +9,25 @@ export default function BookMatchingInterface(){
             id: "basic-bar",
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+            categories: ["Tragedy", "Novel", "Drama", "Biography", "Macbeth", "King Lear", "The Great Gatsby", "Catch-22", "The Kite Runner", "Hamlet", "Steve Jobs", "Wings of Fire"]
           },
         },
         series: [
           {
             name: "series-1",
-            data: [30, 40, 45, 50, 59, 60, 70, 91],
-            strokeWidth: 4
+            data: [10, 0, 30, 0, 0, 60, 70, 80, 0, 60, 70, 80],
           },
           {
             name: "series-2",
-            data: [30, 40, 45, 50, 49, 60, 70, 91],
-            strokeWidth: 2
+            data: [10, 20, 30, 0, 0, 60, 0, 80, 0, 60, 0, 80],
+          },
+          {
+            name: "series-3",
+            data: [0, 20, 0, 40, 50, 0, 0, 80],
+          },
+          {
+            name: "series-4",
+            data: [10, 20, 0, 0, 50, 0, 70, 0],
           }
         ],
         
@@ -28,11 +35,13 @@ export default function BookMatchingInterface(){
       
     return (
         <>
+            <NavMenu />
             <Chart
                 options={data.options}
                 series={data.series}
                 type="line"
-                width="1000"
+                width="100%"
+                height="500px"
             />
           
         </>
