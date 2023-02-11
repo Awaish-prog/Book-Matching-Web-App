@@ -27,3 +27,10 @@ export async function createUser(name){
     const resJson = await response.json()
     return resJson.status
 }
+
+export async function getBookMatchingData(){
+    const response = await fetch(`${apiUrl}api/getBookMatchingData`)
+    const resJson = await response.json()
+    return resJson
+}
+

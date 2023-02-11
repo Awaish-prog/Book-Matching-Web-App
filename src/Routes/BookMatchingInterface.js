@@ -1,48 +1,48 @@
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import { getBookMatchingData } from "../ApiCalls/ApiCalls";
 import NavMenu from "../Components/NavMenu";
 
 export default function BookMatchingInterface(){
 
-    const data = {
-        options: {
-          chart: {
-            id: "basic-bar",
-          },
-          xaxis: {
-            categories: ["Tragedy", "Novel", "Drama", "Biography", "Macbeth", "King Lear", "The Great Gatsby", "Catch-22", "The Kite Runner", "Hamlet", "Steve Jobs", "Wings of Fire"]
-          },
-        },
-        series: [
-          {
-            name: "series-1",
-            data: [10, 0, 30, 0, 0, 60, 70, 80, 0, 60, 70, 80],
-          },
-          {
-            name: "series-2",
-            data: [10, 20, 30, 0, 0, 60, 0, 80, 0, 60, 0, 80],
-          },
-          {
-            name: "series-3",
-            data: [0, 20, 0, 40, 50, 0, 0, 80],
-          },
-          {
-            name: "series-4",
-            data: [10, 20, 0, 0, 50, 0, 70, 0],
-          }
-        ],
-        
-      };
+    const [data, setData] = useState({})
+    const [displayData, setDisplayData] = useState(false)
+
+      async function setBookMatchingData(){
+        const bookMatchingData = await getBookMatchingData()
+        setData({
+            options: {
+              chart: {
+                id: "basic-bar",
+              },
+              xaxis: {
+                categories: bookMatchingData.allGenresAndBooks
+              },
+            },
+            series: bookMatchingData.bookMatchingData
+          })
+      }
+
+      useEffect(() => {
+        setBookMatchingData()
+      }, [])
       
+      useEffect(() => {
+        if("options" in data){
+            setDisplayData(true)
+        }
+      }, [data])
+
     return (
         <>
             <NavMenu />
-            <Chart
+            {displayData && <Chart
                 options={data.options}
                 series={data.series}
                 type="line"
                 width="100%"
                 height="500px"
-            />
+            />}
           
         </>
     )
