@@ -29,8 +29,17 @@ export async function createUser(name){
     return [resJson.status, resJson.token]
 }
 
-export async function getBookMatchingData(){
-    const response = await fetch(`${apiUrl}api/getBookMatchingData`)
+export async function getBookMatchingData(name, token){
+    const response = await fetch(`${apiUrl}api/getBookMatchingData`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'token': token
+        },
+        body: JSON.stringify({
+            name
+        })
+    })
     const resJson = await response.json()
     return resJson
 }

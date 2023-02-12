@@ -1,10 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavMenu from "../Components/NavMenu";
 import { sendUserData } from "../ApiCalls/ApiCalls";
 import { CurrentUserContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import Logout from "../Components/Logout";
 
 
 export default function UserInputForm(){
+    const navigate = useNavigate()
     const [genres, setGenres] = useState([])
     const [books, setBooks] = useState([])
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
@@ -24,9 +27,15 @@ export default function UserInputForm(){
         e.preventDefault()
         sendUserData(currentUser, genres, books, localStorage.getItem(currentUser))
     }
+    useEffect(() => {
+        if(!currentUser){
+            navigate("/")
+        }
+    }, [])
     return (
         <>
             <NavMenu />
+            <Logout />
             <form onSubmit={sendData}>
                 <h3>Genres</h3>
                     <label htmlFor="tragedy">Tragedy</label>

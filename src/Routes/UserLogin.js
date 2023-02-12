@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUser } from "../ApiCalls/ApiCalls"
 import { CurrentUserContext } from "../App"
@@ -20,6 +20,9 @@ export default function UserLogin(updateCurrentUser){
         setCurrentUser(userName)
         status ? navigate("/userInput") : console.log("Error");
     }
+    useEffect(() => {
+        setCurrentUser("")
+    })
     return (
         <section className="">
             <form onSubmit={submitLoginForm}>
