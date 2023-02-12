@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import NavMenu from "../Components/NavMenu";
 import { sendUserData } from "../ApiCalls/ApiCalls";
-import { useLocation } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 
 export default function UserInputForm(){
     const [genres, setGenres] = useState([])
     const [books, setBooks] = useState([])
-    const location = useLocation()
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
     function insertValueInGenres(genre){
         setGenres((prev) => {
             prev.includes(genre) ? prev.shift(genre) : prev.push(genre)
@@ -22,7 +22,7 @@ export default function UserInputForm(){
     }
     function sendData(e){
         e.preventDefault()
-        sendUserData(location.state.userName, genres, books)
+        sendUserData(currentUser, genres, books, localStorage.getItem(currentUser))
     }
     return (
         <>

@@ -1,19 +1,24 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUser } from "../ApiCalls/ApiCalls"
+import { CurrentUserContext } from "../App"
 
 
-export default function UserLogin(){
+export default function UserLogin(updateCurrentUser){
     const [userName, setUserName] = useState("")
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
     const navigate = useNavigate()
     
     function changeUserName(e){
         setUserName(e.target.value)
     }
     
-    function submitLoginForm(e){
+    async function submitLoginForm(e){
         e.preventDefault()
-        createUser(userName) ? navigate("/userInput", {state : {userName}}) : console.log("Error");
+        const [status, token] = await createUser(userName)
+        localStorage.setItem(userName, token)
+        setCurrentUser(userName)
+        status ? navigate("/userInput") : console.log("Error");
     }
     return (
         <section className="">

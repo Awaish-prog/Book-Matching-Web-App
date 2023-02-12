@@ -1,10 +1,11 @@
 const apiUrl = "http://localhost:4000/"
 
-export async function sendUserData(name, genres, books){
+export async function sendUserData(name, genres, books, token){
     const response = await fetch(`${apiUrl}api/saveUserData`, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'token': token
         },
         body: JSON.stringify({
             name, genres, books 
@@ -25,7 +26,7 @@ export async function createUser(name){
         })
     })
     const resJson = await response.json()
-    return resJson.status
+    return [resJson.status, resJson.token]
 }
 
 export async function getBookMatchingData(){
