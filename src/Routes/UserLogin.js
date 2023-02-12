@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUser } from "../ApiCalls/ApiCalls"
-import { CurrentUserContext } from "../App"
 
 
-export default function UserLogin(updateCurrentUser){
+export default function UserLogin(){
     const [userName, setUserName] = useState("")
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
     const navigate = useNavigate()
     
     function changeUserName(e){
@@ -16,13 +14,9 @@ export default function UserLogin(updateCurrentUser){
     async function submitLoginForm(e){
         e.preventDefault()
         const [status, token] = await createUser(userName)
-        localStorage.setItem(userName, token)
-        setCurrentUser(userName)
-        status ? navigate("/userInput") : console.log("Error");
+        localStorage.setItem(userName.toLowerCase(), token)
+        status ? navigate("/userInput", {state: {userName: userName.toLowerCase()}}) : console.log("Error");
     }
-    useEffect(() => {
-        setCurrentUser("")
-    })
     return (
         <section className="">
             <form onSubmit={submitLoginForm}>

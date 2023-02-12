@@ -1,16 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavMenu from "../Components/NavMenu";
 import { sendUserData } from "../ApiCalls/ApiCalls";
-import { CurrentUserContext } from "../App";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logout from "../Components/Logout";
 
 
 export default function UserInputForm(){
     const navigate = useNavigate()
+    const location = useLocation()
     const [genres, setGenres] = useState([])
     const [books, setBooks] = useState([])
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
     function insertValueInGenres(genre){
         setGenres((prev) => {
             prev.includes(genre) ? prev.shift(genre) : prev.push(genre)
@@ -25,17 +24,17 @@ export default function UserInputForm(){
     }
     function sendData(e){
         e.preventDefault()
-        sendUserData(currentUser, genres, books, localStorage.getItem(currentUser))
+        sendUserData(location.state.userName, genres, books, localStorage.getItem(location.state.userName))
     }
     useEffect(() => {
-        if(!currentUser){
+        if(!localStorage.getItem(location.state.userName.toLowerCase())){
             navigate("/")
         }
     }, [])
     return (
         <>
-            <NavMenu />
-            <Logout />
+            <NavMenu userName={location.state.userName}/>
+            <Logout userName={location.state.userName}/>
             <form onSubmit={sendData}>
                 <h3>Genres</h3>
                     <label htmlFor="tragedy">Tragedy</label>

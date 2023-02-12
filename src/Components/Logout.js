@@ -1,13 +1,11 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { CurrentUserContext } from "../App"
 
-export default function Logout(){
+export default function Logout({userName}){
     const navigate = useNavigate()
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
     function logout(){
-        setCurrentUser("")
+        localStorage.removeItem(userName)
         navigate("/")
     }
     return (

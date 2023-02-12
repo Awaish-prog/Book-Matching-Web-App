@@ -2,18 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBookMatchingData } from "../ApiCalls/ApiCalls";
 import NavMenu from "../Components/NavMenu";
-import { CurrentUserContext } from "../App";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logout from "../Components/Logout";
 
 export default function BookMatchingInterface(){
     const navigate = useNavigate()
+    const location = useLocation()
     const [data, setData] = useState({})
     const [displayData, setDisplayData] = useState(false)
-    const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
     async function setBookMatchingData(){
-        const bookMatchingData = await getBookMatchingData(currentUser, localStorage.getItem(currentUser))
+        const bookMatchingData = await getBookMatchingData(location.state.userName, localStorage.getItem(location.state.userName))
         setData({
             options: {
               chart: {
@@ -28,7 +27,7 @@ export default function BookMatchingInterface(){
     }
 
     useEffect(() => {
-        if(!currentUser){
+        if(!localStorage.getItem(location.state.userName)){
             navigate("/")
         }
         setBookMatchingData()
@@ -42,8 +41,8 @@ export default function BookMatchingInterface(){
 
     return (
         <>
-            <NavMenu />
-            <Logout />
+            <NavMenu userName={location.state.userName}/>
+            <Logout userName={location.state.userName}/>
             {displayData && <Chart
                 options={data.options}
                 series={data.series}

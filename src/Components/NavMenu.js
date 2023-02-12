@@ -1,13 +1,20 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
-export default function NavMenu(){
+export default function NavMenu({userName}){
+    const navigate = useNavigate()
+    function goToInputForm(){
+        navigate("/userInput", {state: {userName: userName.toLowerCase()}})
+    }
+    function goToBookMatchdata(){
+        navigate("/bookMatchingInterface", {state: {userName: userName.toLowerCase()}})
+    }
     return (
         <header className="nav-bar">
             <ul>
-                <Link to="/userInput"><li>Input Form</li></Link>
-                <Link to="/bookMatchingInterface"><li>View Data</li></Link>
+                <li onClick={goToInputForm}>Input Form</li>
+                <li onClick={goToBookMatchdata}>View Data</li>
             </ul>
         </header>
     )

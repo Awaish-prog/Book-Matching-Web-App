@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:4000/"
+const apiUrl = "http://44.205.20.25:4001/"
 
 export async function sendUserData(name, genres, books, token){
     const response = await fetch(`${apiUrl}api/saveUserData`, {
