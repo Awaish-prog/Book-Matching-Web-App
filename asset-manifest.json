@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Book-Matching-Web-App/static/css/main.1a6512e1.css",
+    "main.js": "/Book-Matching-Web-App/static/js/main.4ed1bb2a.js",
+    "index.html": "/Book-Matching-Web-App/index.html",
+    "main.1a6512e1.css.map": "/Book-Matching-Web-App/static/css/main.1a6512e1.css.map",
+    "main.4ed1bb2a.js.map": "/Book-Matching-Web-App/static/js/main.4ed1bb2a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a6512e1.css",
+    "static/js/main.4ed1bb2a.js"
+  ]
+}
