@@ -14,12 +14,12 @@
 Prerequisite: You should have node and npm installed.
 
 1. Use below command to clone this repository
-    git clone https://github.com/Awaish-prog/Book-Matching-Web-App.git
+    #### git clone https://github.com/Awaish-prog/Book-Matching-Web-App.git
 
 2. Use below command to install all dependencies
-    npm install
+    #### npm install
 3. Use below command to run the app
-    npm start
+    #### npm start
 
 # Getting Started with Create React App
 
