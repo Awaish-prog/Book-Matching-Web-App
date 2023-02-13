@@ -4,7 +4,7 @@
 
 ### How to use
 
-1. Click on this link ["http://44.205.20.25:4001/](App Url)
+1. Click on this link ["http://44.205.20.25:4001/"](App Url)
 2. Enter your name to use the app.
 3. Go to Input Form to select genres and books.
 4. Go to View Data to see how do your choices match with other users.
