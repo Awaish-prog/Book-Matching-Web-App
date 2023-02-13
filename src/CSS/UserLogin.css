@@ -1,0 +1,53 @@
+html, body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #F8E9A1;
+    margin: 0;
+}
+h1 {
+    font-size: 2rem;
+    margin: 0 1vw;
+    color: #24305E;
+    text-align: center;
+}
+.userLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    margin-top: 20vh;
+}
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    min-width: 200px;
+    gap: 20px;
+    align-items: center;
+}
+.button {
+    background-color: #24305E;
+    color: #F8E9A1;
+    width: 80px;
+    border: none;
+    padding: 7px 5px;
+    font-weight: bolder;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.button:hover{
+    text-decoration: underline;
+    background-color: #374785;
+}
+.nameInput {
+    width: 100%;
+    padding: 8px;
+    border-radius: 7px;
+    border: none;
+    outline: 2px solid #374785;
+}
+.nameInput:focus{
+    outline: 2px solid #24305E;
+}
+.logout {
+    margin: 10px 10px 0 calc(100vw - 100px);
+}

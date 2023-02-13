@@ -1,0 +1,25 @@
+.navBar {
+    width: 100%;
+}
+.navList {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    background-color: #24305E;
+    margin: 0;
+    height: 50px;
+    color: #F8E9A1;
+    gap: 10vw;
+    padding: 0;
+    align-items: center;
+}
+.navElement {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #374785;
+    border-radius: 5px;
+}
+.navElement:hover {
+    color: #ccb74f;
+
+}

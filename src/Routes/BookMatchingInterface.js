@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBookMatchingData } from "../ApiCalls/ApiCalls";
 import NavMenu from "../Components/NavMenu";
 import { useLocation, useNavigate } from "react-router-dom";
 import Logout from "../Components/Logout";
+import "../CSS/UserInputData.css"
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function BookMatchingInterface(){
     const navigate = useNavigate()
@@ -21,6 +23,9 @@ export default function BookMatchingInterface(){
               xaxis: {
                 categories: bookMatchingData.allGenresAndBooks
               },
+              grid: {
+                borderColor: "#24305E"
+              }
             },
             series: bookMatchingData.bookMatchingData
           })
@@ -43,14 +48,15 @@ export default function BookMatchingInterface(){
         <>
             <NavMenu userName={location.state.userName}/>
             <Logout userName={location.state.userName}/>
-            {displayData && <Chart
+            <div className="chart">
+            {displayData ? <Chart
                 options={data.options}
                 series={data.series}
                 type="line"
                 width="100%"
                 height="500px"
-            />}
-          
+            /> : <div className="loader"><CircularProgress /></div>}
+            </div>
         </>
     )
 }

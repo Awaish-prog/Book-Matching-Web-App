@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUser } from "../ApiCalls/ApiCalls"
-
+import "../CSS/UserLogin.css"
 
 export default function UserLogin(){
     const [userName, setUserName] = useState("")
@@ -18,10 +18,11 @@ export default function UserLogin(){
         status ? navigate("/userInput", {state: {userName: userName.toLowerCase()}}) : console.log("Error");
     }
     return (
-        <section className="">
-            <form onSubmit={submitLoginForm}>
-                <input type="text" value={userName} onChange={changeUserName} required />
-                <input type="submit" value="Login" />
+        <section className="userLogin">
+            <h1>Enter your name to use the app</h1>
+            <form onSubmit={submitLoginForm} className="loginForm">
+                <input className="nameInput" type="text" value={userName} onChange={changeUserName} required placeholder="Name" />
+                <input className="button" type="submit" value="Login" />
             </form>
         </section>
     )

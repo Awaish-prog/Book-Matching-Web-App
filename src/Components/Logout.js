@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import "../CSS/UserLogin.css"
 import { useNavigate } from "react-router-dom"
 
 export default function Logout({userName}){
@@ -9,6 +9,6 @@ export default function Logout({userName}){
         navigate("/")
     }
     return (
-        <button onClick={logout}>Logout</button>
+        <button className="button logout" onClick={logout}>Logout</button>
     )
 }
