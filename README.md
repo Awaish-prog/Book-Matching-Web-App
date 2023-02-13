@@ -2,6 +2,12 @@
 
 ## Reach Best Full Stack Engineer Application 2023
 
+### How to use
+
+1. Open this url.
+2. Enter your name to use the app.
+3. Go to Input Form to select genres and books.
+4. Go to View Data to see how do your choices match with other users.
 
 # Getting Started with Create React App
 
